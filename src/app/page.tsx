@@ -1,9 +1,9 @@
 "use server";
 
 import { auth } from "@/auth";
-import { SignInButton } from "./components/sign-in-button";
 import Link from "next/link";
 import { SignOutButton } from "./components/sign-out-button";
+import { redirect } from "next/navigation";
 
 export default async function Home() {
   const session = await auth();
@@ -17,10 +17,5 @@ export default async function Home() {
     );
   }
 
-  return (
-    <div>
-      {" "}
-      <p> You Are Not Signed In</p> <SignInButton />
-    </div>
-  );
+  return redirect("/auth/signin")
 }
